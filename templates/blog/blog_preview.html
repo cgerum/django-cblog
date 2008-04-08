@@ -1,0 +1,13 @@
+{% extends "blog/blog_default.html"%}
+
+
+{% block body %}
+{% include "blog/blog_post.html" %}
+<form method="post" action="">
+<table>
+{{form}}
+</table>
+<input type="submit"/>
+</form>
+{% endblock %} 
+

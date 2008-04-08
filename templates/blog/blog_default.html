@@ -1,0 +1,17 @@
+{% extends "default.html" %}
+
+{%block sidebar%}
+<!-- Tagcloud -->
+
+{% load tagging_tags %}
+
+
+{% tag_cloud_for_model cblog.Blogpost as tag_cloud %}      
+
+<ul id="tagcloud">
+{% for tag in tag_cloud %}
+<li class="t{{tag.font_size}}"><a href="{% url blogpost_tag tag %}">{{tag}}</a></li>
+{% endfor %}
+<ul>
+
+{% endblock %}

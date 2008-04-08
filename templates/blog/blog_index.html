@@ -1,0 +1,18 @@
+{% extends "blog/blog_default.html" %}  
+
+{% block title %}Blog{% endblock %}
+
+{% block body %}
+
+{% if object_list %}
+  {% for post in object_list %}
+    {% include "blog/blog_post.html" %}
+  {% endfor %}
+
+{% include "blog/blog_pagination.html" %}
+
+{% else %}
+  Sorry No Posts!
+{% endif %}
+
+{% endblock %}

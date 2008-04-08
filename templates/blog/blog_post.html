@@ -1,0 +1,28 @@
+<!-- article -->
+<div class="article">
+  {% load comments %}
+  <h2><span><a href="{{ post.get_absolute_url }}">{{post.title}}</a></span></h2>
+  <p class="info noprint">
+    <span class="date">{{post.date|date}}</span><span class="noscreen">,</span>
+    {%if post.tags %} 
+    <span class="cat">
+    {% load tagging_tags %}
+    {% tags_for_object post as tags%}
+    {% for tag in tags %}
+    <a href="{% url blogpost_tag tag %}">{{tag}}</a><span class="noscreen">,</span>
+    {% endfor %}
+    </span>
+    {% endif %}
+    {% if user.is_authenticated %}
+    <a href="{{ post.get_absolute_url }}edit/#edit">Edit</a>
+    {% endif %}
+    {% get_free_comment_count for cblog.blogpost post.id as comment_count %}
+    <span class="comments"><a href="{{ post.get_absolute_url }}#comments">Comments ({{ comment_count }})</a></span>
+    <!--
+    <span class="user"><a href="#">My name</a></span><span class="noscreen">,</span>
+  </p>-->
+  
+  <p>{{post.post|safe}}</p>
+  
+  <!--<p class="btn-more box noprint"><strong><a href="#">Continue</a></strong></p>-->
+</div> <!-- /article -->

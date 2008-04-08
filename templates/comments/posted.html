@@ -1,0 +1,18 @@
+{% extends "blog/blog_default.html" %}
+{% block title%}
+Posted
+{% endblock %}
+
+{% block body  %}
+
+<h1>Comment posted successfully</h1>
+
+<p>Thanks for contributing.</p>
+
+{% if object %}
+	<ul>
+		<li><a href="{{ object.get_absolute_url }}">View your comment</a></li>
+	</ul>
+{% endif %}
+
+{% endblock %}

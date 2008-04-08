@@ -1,0 +1,25 @@
+{% if has_previous or has_next %}
+
+  {% if has_previous %}
+    <a href="{% url blog_index %}?page={{previous}}">&laquo; 
+					   Previous</a>
+  {% endif %}
+		
+  {% for number in page_range %}
+  
+    {% ifequal number page %}
+      <span>{{ number }}</span>
+	  
+    {% else %}
+      <a href="{% url blog_page %}?page={{number}}" 
+         title="Seite {{ number }}">{{ number }}</a>
+	
+    {% endifequal %}
+	
+  {% endfor %}
+  		
+  {% if has_next %}
+    <a href="{% url blog_page %}?page={{next}}">Next &raquo;</a>
+  {% endif %} 
+
+{% endif %}
