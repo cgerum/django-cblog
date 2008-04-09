@@ -1,5 +1,6 @@
 from django.db import models
 from tagging.fields import TagField
+from utils import slugifyUniquely
 
 import tagging
 
@@ -17,6 +18,19 @@ class Blogpost(models.Model):
         return ('blog_detail', [self.slug])
 
     get_absolute_url = models.permalink(get_absolute_url)
+    
+    def save(self):
+        #Automatically slugifies from User title
+        if not self.id:
+            #Autopopulate fields
+            if self.slug:
+                value = self.slug
+            else:
+                value = self.title
+            self.slug = slugifyUniquely(value, self.__class__)
+        super(self.__class__, self).save()
+            
+        
     
     class Admin: 
         list_display = ('title', 'date')
