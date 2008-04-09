@@ -5,6 +5,7 @@ from cblog.forms import EditPostForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
+from django.template import RequestContext
 
 # Create your views here.
 
@@ -26,4 +27,4 @@ def edit_article(request, slug=""):
         return HttpResponseRedirect(reverse('blog_detail', kwargs={'slug' : slug}))
     
     form  = EditPostForm(instance=blogpost)
-    return render_to_response ('blog/blog_edit.html', {'form' : form})
+    return render_to_response ('blog/blog_edit.html', RequestContext(request, {'form' : form}))
