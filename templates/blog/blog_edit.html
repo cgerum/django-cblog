@@ -3,50 +3,15 @@
 
 {% block body %}
 
-<script>
-
-document.onkeydown = get_preview;
-
-
-function get_preview(evt){
-evt = (evt) ? evt : ((event) ? event : null);
-
-//alert(evt.keyCode);
-if (evt.keyCode == 32){
-  do_preview();
-}}
-
-function do_preview(){
-   var preview = document.getElementById('preview');
-   $('post-form').request(
-  {
-    parameters:{ajax : 0},
-    onSuccess: function(transport){
-      var response = transport.responseText || "no response text";
-      //alert("Success! \n\n" + response);
-      preview.innerHTML = response;
-    },
-    onFailure: function(){ alert('Something went wrong...') }
-  });
-}
-
-</script>
-
 <div id="preview">
 </div>
-<form method="post" action="" id="post-form" onkeyup="get_preview()">
+<form method="post" action="" id="post-form">
 <a name="edit"></a>
 <table>
 {{form}}
 </table>
-<!--<input type="button" onclick="get_preview();" value="Preview"/>-->
 <input type="submit"/>
 </form>
-
-
-<script>
-do_preview();
-</script>
 
 {% endblock %} 
 
