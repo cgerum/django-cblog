@@ -3,6 +3,7 @@
 {%block sidebar%}
 <!-- Tagcloud -->
 
+{% comment %}
 {% load tagging_tags %}
 
 
@@ -10,8 +11,11 @@
 
 <ul id="tagcloud">
 {% for tag in tag_cloud %}
+
 <li class="t{{tag.font_size}}"><a href="{% url blogpost_tag tag %}">{{tag}}</a></li>
 {% endfor %}
+{% endcomment%}
+
 <ul>
 
 {% endblock %}

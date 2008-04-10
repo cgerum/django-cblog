@@ -4,13 +4,6 @@ from django.newforms.util import smart_unicode
 from django.newforms.widgets import flatatt
 from django.utils.safestring import mark_safe
 
-try:
-    from photologue.models import Photo
-    photologue = True
-except ImportError:
-    photologue=false
-    
-
 #class PostEditField(forms.widgets.Textarea):
 #    def render(self, name, value, attrs=None):
 #        value = smart_unicode(value)

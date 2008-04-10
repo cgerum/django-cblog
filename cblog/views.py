@@ -1,6 +1,6 @@
 from django.shortcuts import render_to_response
 from cblog.models import Blogpost
-from tagging.models import Tag, TaggedItem
+#from tagging.models import Tag, TaggedItem
 from cblog.forms import EditPostForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse

@@ -1,9 +1,20 @@
 from django.db import models
-from tagging.fields import TagField
 from utils import slugifyUniquely
 
-import tagging
+try:
+    from tagging.fields import TagField
+    tagfield_help_text = _('Separate tags with spaces, put quotes around multiple-word tags.')
+except ImportError:
+    class TagField(models.CharField):
+        def __init__(self, **kwargs):
+            default_kwargs = {'max_length': 255, 'blank': True}
+            default_kwargs.update(kwargs)
+            super(TagField, self).__init__(**default_kwargs)
+        def get_internal_type(self):
+            return 'CharField'
 
+    #tagfield_help_text = _('Django-tagging was not found, tags will be treated as plain text.')
+    
 class Blogpost(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255,
@@ -12,6 +23,7 @@ class Blogpost(models.Model):
     			    blank=False)
     date = models.DateTimeField(auto_now_add=True)
     post = models.TextField()
+    
     tags = TagField(blank=True)
 
     def get_absolute_url(self):

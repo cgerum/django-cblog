@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import *
 from cblog.models import Blogpost
 from cblog.feeds import RssSiteNewsFeed, AtomSiteNewsFeed
-import tagging.views
+    
 
 entry_list_dict = { 
     'queryset' : Blogpost.objects.all().order_by('-date'),
@@ -45,21 +45,25 @@ urlpatterns = urlpatterns + patterns('',
 
 
 #Tags
+try:
+    import tagging.views
+    
+    tag_list_dict =  {
+        'queryset_or_model' : Blogpost.objects.all().order_by('-date'),
+        #'model' : Blogpost, 
+        'paginate_by' : 10, 
+        'allow_empty' : True,
+        'template_name' : 'blog/blog_index.html',
+        }
 
-tag_list_dict =  {
-    'queryset_or_model' : Blogpost.objects.all().order_by('-date'),
-    #'model' : Blogpost, 
-    'paginate_by' : 10, 
-    'allow_empty' : True,
-    'template_name' : 'blog/blog_index.html',
-    }
-
-urlpatterns = urlpatterns + patterns('',
-    url(r'^tag/(?P<tag>[^/]+)/$',
-        'tagging.views.tagged_object_list',
-        tag_list_dict,
-        name='blogpost_tag'),
-)
+    urlpatterns = urlpatterns + patterns('',
+                                         url(r'^tag/(?P<tag>[^/]+)/$',
+                                             'tagging.views.tagged_object_list',
+                                             tag_list_dict,
+                                             name='blogpost_tag'),
+                                         )
+except ImportError:
+    pass
 
 
 #Edit

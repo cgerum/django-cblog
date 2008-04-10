@@ -1,0 +1,101 @@
+
+<!--
+	light b0x
+	an html web page design by 
+	dabugas <dabugas@ufies.org>
+	http://dabugas.cjb.net
+ -->
+
+
+<html>
+
+<!-- page title -->
+<head>
+	<title>{% block title %}[ foobar ] - [ home ] {% endblock %} </title>
+</head>
+
+<!-- set up basic colors -->
+<body bgcolor="#ffffff" text="#8d9aa4" link="#babbe1" vlink="#babbe1" alink="#8d9aa4">
+
+<!-- create basic layout -->
+<table width=70% border=0 align=center>
+<tr>
+	<td>
+<!-- draw title box -->
+		<table cellpadding=0 cellspacing=0 border=0 align=right>
+		<tr>
+			<td bgcolor="#bad2e2">
+				<table width="100%" cellpadding=3 cellspacing=1 border=0>
+				<tr>
+					<td bgcolor="#dfeff7">
+					<b>
+						<font color="#bad2e2"> [ </font>					
+<!-- site name -->
+						f o o b a r
+						<font color="#bad2e2"> ] - [ </font>
+<!-- current page -->
+						home
+						<font color="#bad2e2"> ]</font>						
+					</b>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		</table>
+	</td>
+	<td>
+	&nbsp;
+	</td>
+</tr>
+<tr>
+	<td  valign="top" width=80%>
+<!-- draw content box -->
+{% block body %}
+	
+{% endblock %}
+	</td>
+<!-- draw site navigation (menu) box -->		
+	<td valign=top width=20%>
+		<table cellpadding=0 cellspacing=0 border=0>
+		<tr>
+			<td bgcolor="#bad2e2">
+				<table width="100%" cellpadding=3 cellspacing=1 border=0>
+				<tr>
+					<td bgcolor="#dfeff7">
+<!-- the choices in the menu -->					
+				    <font color="#bad2e2">> </font><a href="/blog/">home</a>
+					<br><font color="#bad2e2">> </font><a href="/blog/">about</a>
+					<br><font color="#bad2e2">> </font><a href="/blog/">apps</a>
+					<br><font color="#bad2e2">> </font><a href="/blog/">music</a>
+					<br><font color="#bad2e2">> </font><a href="mailto:no_one_at_nowhere_com">e-mail</a>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr>
+	<td>
+<!-- draw copyright box -->						
+		<table cellpadding=0 cellspacing=0 border=0>
+		<tr>
+			<td bgcolor="#bad2e2">
+				<table width="100%" cellpadding=3 cellspacing=1 border=0>
+				<tr>
+					<td bgcolor="#dfeff7">
+					&copy 2000 by foo d00d
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		</table>
+	</td>
+	<td>&nbsp</td>
+</tr>
+
+</table>
+
+</body></html>
