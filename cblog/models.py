@@ -3,7 +3,7 @@ from utils import slugifyUniquely
 
 try:
     from tagging.fields import TagField
-    tagfield_help_text = _('Separate tags with spaces, put quotes around multiple-word tags.')
+
 except ImportError:
     class TagField(models.CharField):
         def __init__(self, **kwargs):
