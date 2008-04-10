@@ -1,13 +1,99 @@
 {% extends "blog/blog_default.html"%}
 
+{% block script %}
+{{block.super}}
+<script language="javascript" type="text/javascript" 
+src="{{media_url}}js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
+<script language="javascript" type="text/javascript">
+try{
+  tinyMCE.init({
+    mode : "none"
+  });
+
+} catch (e) {
+  
+}
+
+function toggleEditor(id) {
+	var elm = document.getElementById(id);
+
+	if (tinyMCE.getInstanceById(id) == null)
+		tinyMCE.execCommand('mceAddControl', false, id);
+	else
+		tinyMCE.execCommand('mceRemoveControl', false, id);
+}
+
+Event.observe(window, 'load', init)
+
+function init(){
+  $('id_post').insert({after: 	'<a href="javascript:toggleEditor(\'content\');">Add/Remove editor</a>'})
+}
+</script>
+
+{% endblock %}
+
 
 {% block body %}
+
+<!--<script>
+
+Event.observe(window, 'load', init);
+
+function init(){
+  $('id_post').insert({before: '<div id="photo_chooser"></div>'})
+  $('photo_chooser').hide()
+  $('photo_chooser').insert('<div id="photo_chooser_photo"></div>')
+  $('photo_chooser').insert('<div id="track1"><div id="handle1"></div></div>')
+  $('photo_chooser').insert('<div id="photo_chooser_photo"></div>')
+  //if (tinyMCEmode){
+  //  toggleEditorMode('id_post')
+  //}
+  load_images();
+}
+
+function load_images(){
+  var data = []
+  var html = ""
+  new Ajax.Request('/galleries/ajax/get_photo/', 
+                   { method:'get',
+                     onSuccess: function(transport){
+                       var response = transport.responseText || "no response text";
+                       data = response.evalJSON(true)
+                       for (var index = 0; index < 4; ++index) {
+                           var url = data[index].url;
+                           var post_url = data[index].post_url;
+			   var slug = data[index].slug
+                           $('photo_chooser').insert('<img id="photo_'+slug+'" src="'+url+'"></img>');
+                           name = 'photo_' + slug;   
+			   $(name).observe('click', insert_image(post_url))
+                       }
+                       
+
+                       
+                       $('photo_chooser').show();
+                   }})
+}
+
+function insert_image(url){
+  return function (event){
+    textarea = $('id_post');
+    if (!textarea.setSelectionRange){
+    }else{
+      var pretext = textarea.value.substring(0, textarea.selectionStart);
+      var posttext = textarea.value.substring(textarea.selectionEnd, textarea.value.length);
+      var img = '<img src="'+url+'"></img>'
+      textarea.value = pretext + img + posttext;
+      textarea.focus();
+    }
+  }
+}
+</script>-->
 
 <div id="preview">
 </div>
 <form method="post" action="" id="post-form">
 <a name="edit"></a>
-<table>
+<table id="blog_form">
 {{form}}
 </table>
 <input type="submit"/>
