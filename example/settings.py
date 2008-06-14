@@ -7,6 +7,7 @@ TEMPLATE_DEBUG = DEBUG
 APPS_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 print APPS_DIR
 sys.path.append(APPS_DIR)
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
@@ -84,6 +85,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'cblog',
+    'tagging',
     'django.contrib.comments',
     'django.contrib.admin',
 )
