@@ -6,13 +6,11 @@
     <span class="date">{{post.date|date}}</span><span class="noscreen">,</span>
     {%if post.tags %} 
     <span class="cat">
-      {% comment  %}
     {% load tagging_tags %}
     {% tags_for_object post as tags%}
     {% for tag in tags %}
     <a href="{% url blogpost_tag tag %}">{{tag}}</a><span class="noscreen">,</span>
     {% endfor %}
-    `{% endcomment %}
     </span>
     {% endif %}
     {% if user.is_authenticated %}
