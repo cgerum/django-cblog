@@ -12,12 +12,8 @@ class Blogpost(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     post = models.TextField()
     markup = models.CharField(max_length=255, default="html")
-    post_generated_html = models.TextField(
-        editable=False
-        )
-    post_generated_preview = models.TextField(
-        editable=False
-        )
+    post_generated_html = models.TextField(editable=False)
+    post_generated_preview = models.TextField(editable=False)
 
     tags = TagField(blank=True)
 
